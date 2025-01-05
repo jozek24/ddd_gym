@@ -1,0 +1,107 @@
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config for Windows
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# macOS files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Node modules (for projects with front-end dependencies)
+node_modules/
+
+# Logs
+*.log
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+*.sln.iml
+
+# VS Code specific
+.vscode/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Docker files
+*.container.log
+docker-compose.override.yml
+
+# NuGet
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+
+# .NET Core
+project.nuget.cache
+project.nuget.g.props
+project.nuget.g.targets
+
+# Local History for JetBrains IDEs
+.localhistory/
+
+# SQL Server files
+*.mdf
+*.ldf
+
+# Configuration
+appsettings*.json
+secrets.json
+*.config
+
+# Azure
+azure-pipelines.yml
+
+# Test results
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+.coveragejson
+
+# Database
+*.db
+*.sqlite
+
+# Publish output
+.publish/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# Global JetBrains Rider configuration
+.idea/
+
+# Temporary files for debugging
+*.vs
+
+# Global storage for Visual Studio
+.vs/
+
+# JetBrains Rider
+.idea/
