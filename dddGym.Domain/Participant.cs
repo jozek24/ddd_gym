@@ -1,9 +1,15 @@
 ﻿namespace dddGym.Domain;
 
-internal class Participant
+public class Participant
 {
-    private readonly Guid _id;
+    public Guid Id { get; }
     private readonly Guid _userId;
-    private readonly List<Guid> _sessionIds;
+    private readonly List<Guid> _sessionIds = [];
+
+    public Participant(Guid userId, Guid? id = null)
+    {
+        _userId = userId;
+        Id = id ?? Guid.NewGuid();
+    }
 
 }

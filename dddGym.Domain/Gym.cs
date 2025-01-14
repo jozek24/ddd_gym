@@ -1,7 +1,7 @@
 ﻿namespace dddGym.Domain;
 
-internal class Gym
+public class Gym
 {
     private readonly Guid _id;
-    private readonly List<Guid> _roomIds;
+    private readonly List<Guid> _roomIds = [];
 }
