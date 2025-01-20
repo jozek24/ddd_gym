@@ -4,14 +4,14 @@ namespace dddGym.Domain;
 
 public class Gym
 {
-    private readonly Guid _id;
+    public Guid Id { get; }
     private readonly List<Guid> _roomIds = [];
     private readonly int _maxRooms;
 
     public Gym(int maxRooms, Guid? id = null)
     {
         _maxRooms = maxRooms;
-        _id = id ?? Guid.NewGuid();
+        Id = id ?? Guid.NewGuid();
     }
 
     public ErrorOr<Success> AddRoom(Room room)

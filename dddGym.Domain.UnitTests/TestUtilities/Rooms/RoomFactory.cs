@@ -10,8 +10,8 @@ public static class RoomFactory
         Guid? id = null)
     {
         return new Room(
-            maxDailySessions,
-            gymId ?? Constants.Gym.Id,
-            id ?? Constants.Rooms.Id);
+            maxDailySessions: maxDailySessions,
+            gymId: gymId ?? Constants.Gym.Id,
+            id: id ?? Constants.Rooms.Id);
     }
 }

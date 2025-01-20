@@ -4,7 +4,11 @@ namespace dddGym.Domain;
 
 public class RoomErrors
 {
-    public readonly static Error CannotHaveMoreSessionsThanSubscriptionAllows = Error.Validation(
-    code: "Gym.CannotHaveMoreSessions",
-    description: "A room cannot have more sessions than the subscription allows");
+    public static readonly Error CannotHaveMoreSessionsThanSubscriptionAllows = Error.Validation(
+        "Room.CannotHaveMoreSessionThanSubscriptionAllows",
+        "A room cannot have more scheduled sessions than the subscription allows");
+
+    public static readonly Error CannotHaveTwoOrMoreOverlappingSessions = Error.Validation(
+        "Room.CannotHaveTwoOrMoreOverlappingSessions",
+        "A room cannot have two or more overlapping sessions");
 }

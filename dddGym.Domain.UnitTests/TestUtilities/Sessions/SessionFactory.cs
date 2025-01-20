@@ -7,15 +7,13 @@ internal static class SessionFactory
     public static Session CreateSession(
         int maxParticipants = Constants.Session.MaxParticipants,
         DateOnly? date = null,
-        TimeOnly? startTime = null,
-        TimeOnly? endTime = null,
+        TimeRange? time = null,
         Guid? trainerId = null,
         Guid? id = null)
     {
         return new Session(
             date ?? Constants.Session.Date,
-            startTime ?? Constants.Session.StartTime,
-            endTime ?? Constants.Session.EndTime,
+            time ?? Constants.Session.Time,
             maxParticipants,
             trainerId ?? Constants.Trainer.Id,
             id ?? Constants.Session.Id);

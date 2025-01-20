@@ -4,12 +4,20 @@ namespace dddGym.Domain;
 
 public class TimeRange
 {
-    private readonly TimeOnly _start;
-    private readonly TimeOnly _end;
+    public TimeOnly Start { get; }
+    public TimeOnly End { get; }
 
     public TimeRange(TimeOnly start, TimeOnly end)
     {
-        _start = start.Throw().IfGreaterThanOrEqualTo(end);
-        _end = end;
+        Start = start.Throw().IfGreaterThanOrEqualTo(end);
+        End = end;
+    }
+
+    internal bool OverlapsWith(TimeRange other)
+    {
+        if (Start >= other.End) return false;
+        if (other.Start >= End) return false;
+
+        return true;
     }
 }

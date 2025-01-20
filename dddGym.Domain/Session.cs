@@ -4,20 +4,18 @@ namespace dddGym.Domain;
 
 public class Session
 {
-    private readonly DateOnly _date;
-    private readonly TimeOnly _startTime;
-    private readonly TimeOnly _endTime;
     private readonly int _maxParticipants;
     private readonly Guid _trainerId;
     private readonly List<Guid> _participantIds = [];
     private readonly Guid _roomId;
     public Guid Id { get; }
+    public DateOnly Date { get; }
+    public TimeRange Time { get; }
 
-    public Session(DateOnly date, TimeOnly startTime, TimeOnly endTime, int maxParticipants, Guid trainerId, Guid? id = null)
+    public Session(DateOnly date, TimeRange time, int maxParticipants, Guid trainerId, Guid? id = null)
     {
-        _date = date;
-        _startTime = startTime;
-        _endTime = endTime;
+        Date = date;
+        Time = time;
         _maxParticipants = maxParticipants;
         _trainerId = trainerId;
         Id = id ?? Guid.NewGuid();
@@ -51,6 +49,6 @@ public class Session
     {
         const int MinHours = 24;
 
-        return (_date.ToDateTime(_startTime) - dateTimeUtcNow).TotalHours < MinHours;
+        return (Date.ToDateTime(Time.Start) - dateTimeUtcNow).TotalHours < MinHours;
     }
 }
