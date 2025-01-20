@@ -8,5 +8,7 @@ public static partial class Constants
         public static readonly DateOnly Date = DateOnly.FromDateTime(DateTime.UtcNow);
         public static readonly TimeOnly StartTime = TimeOnly.FromDateTime(DateTime.UtcNow);
         public static readonly TimeOnly EndTime = TimeOnly.FromDateTime(DateTime.UtcNow);
+
+        public const int MaxParticipants = 10;
     }
 }

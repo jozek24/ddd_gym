@@ -11,5 +11,4 @@ public class Participant
         _userId = userId;
         Id = id ?? Guid.NewGuid();
     }
-
 }

@@ -1,4 +1,6 @@
-﻿namespace dddGym.Domain;
+﻿using ErrorOr;
+
+namespace dddGym.Domain;
 
 public class Session
 {
@@ -6,10 +8,10 @@ public class Session
     private readonly TimeOnly _startTime;
     private readonly TimeOnly _endTime;
     private readonly int _maxParticipants;
-    private readonly Guid _id;
     private readonly Guid _trainerId;
     private readonly List<Guid> _participantIds = [];
     private readonly Guid _roomId;
+    public Guid Id { get; }
 
     public Session(DateOnly date, TimeOnly startTime, TimeOnly endTime, int maxParticipants, Guid trainerId, Guid? id = null)
     {
@@ -18,24 +20,31 @@ public class Session
         _endTime = endTime;
         _maxParticipants = maxParticipants;
         _trainerId = trainerId;
-        _id = id ?? Guid.NewGuid();
+        Id = id ?? Guid.NewGuid();
     }
 
-    public void ReserveSpot(Participant participant)
+    public ErrorOr<Success> ReserveSpot(Participant participant)
     {
         if (_participantIds.Count >= _maxParticipants)
-            throw new Exception("Cannot have more reservations");
+            return SessionErrors.CannotHaveMoreReservationsThanParticipants;
+
+        if (_participantIds.Contains(participant.Id))
+            return Error.Conflict(description: "Participants cannot reserve twice to the same session");
 
         _participantIds.Add(participant.Id);
+
+        return Result.Success;
     }
 
-    public void CancellSpotReservation(Participant participant, IDateTimeProvider dateTimeProvider)
+    public ErrorOr<Success> CancellReservation(Participant participant, IDateTimeProvider dateTimeProvider)
     {
         if (IsTooCloseToSession(dateTimeProvider.DateTimeUtcNow))
-            throw new Exception("Cannot cancell reservations. Too close to session");
+            return SessionErrors.CannotCancelReservationTooCloseToSession;
 
         if (!_participantIds.Remove(participant.Id))
-            throw new Exception("Reservation not found");
+            return Error.NotFound("Participant not found");
+
+        return Result.Success;
     }
 
     private bool IsTooCloseToSession(DateTime dateTimeUtcNow)
