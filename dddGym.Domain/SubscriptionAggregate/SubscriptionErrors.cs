@@ -1,6 +1,6 @@
 ﻿using ErrorOr;
 
-namespace dddGym.Domain;
+namespace dddGym.Domain.SubscriptionAggregate;
 
 public class SubscriptionErrors
 {

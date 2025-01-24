@@ -1,4 +1,5 @@
-﻿using Throw;
+﻿using dddGym.Domain.Common.ValueObjects;
+using Throw;
 
 namespace dddGym.Domain.UnitTests.TestUtilities.Common;
 

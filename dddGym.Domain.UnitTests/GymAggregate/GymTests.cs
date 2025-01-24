@@ -1,9 +1,10 @@
-﻿using dddGym.Domain.UnitTests.TestConstants;
+﻿using dddGym.Domain.GymAggregate;
+using dddGym.Domain.UnitTests.TestConstants;
 using dddGym.Domain.UnitTests.TestUtilities.Gyms;
 using dddGym.Domain.UnitTests.TestUtilities.Rooms;
 using FluentAssertions;
 
-namespace dddGym.Domain.UnitTests;
+namespace dddGym.Domain.UnitTests.GymAggregate;
 
 public class GymTests
 {

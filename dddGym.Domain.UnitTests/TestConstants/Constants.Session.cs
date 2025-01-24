@@ -1,4 +1,6 @@
-﻿namespace dddGym.Domain.UnitTests.TestConstants;
+﻿using dddGym.Domain.Common.ValueObjects;
+
+namespace dddGym.Domain.UnitTests.TestConstants;
 
 public static partial class Constants
 {

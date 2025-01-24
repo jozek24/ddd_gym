@@ -1,17 +1,18 @@
-﻿using ErrorOr;
+﻿using dddGym.Domain.Common;
+using dddGym.Domain.RoomAggregate;
+using ErrorOr;
 
-namespace dddGym.Domain;
+namespace dddGym.Domain.GymAggregate;
 
-public class Gym
+public class Gym : AggregateRoot
 {
-    public Guid Id { get; }
     private readonly List<Guid> _roomIds = [];
     private readonly int _maxRooms;
 
     public Gym(int maxRooms, Guid? id = null)
+        : base(id ?? Guid.NewGuid())
     {
         _maxRooms = maxRooms;
-        Id = id ?? Guid.NewGuid();
     }
 
     public ErrorOr<Success> AddRoom(Room room)
@@ -21,7 +22,7 @@ public class Gym
 
         if (_roomIds.Count() >= _maxRooms)
             return GymErrors.CannotHaveMoreRoomsThanSubscriptionAllows;
-        
+
         _roomIds.Add(room.Id);
 
         return Result.Success;

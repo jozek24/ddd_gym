@@ -1,4 +1,5 @@
-﻿using dddGym.Domain.UnitTests.TestConstants;
+﻿using dddGym.Domain.TrainerAggregate;
+using dddGym.Domain.UnitTests.TestConstants;
 
 namespace dddGym.Domain.UnitTests.TestUtilities.Trainers;
 

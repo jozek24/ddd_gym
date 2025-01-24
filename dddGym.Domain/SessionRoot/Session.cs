@@ -1,35 +1,37 @@
-﻿using ErrorOr;
+﻿using dddGym.Domain.Common;
+using dddGym.Domain.Common.ValueObjects;
+using dddGym.Domain.ParticipantAggregate;
+using ErrorOr;
 
-namespace dddGym.Domain;
+namespace dddGym.Domain.SessionRoot;
 
-public class Session
+public class Session : AggregateRoot
 {
     private readonly int _maxParticipants;
     private readonly Guid _trainerId;
-    private readonly List<Guid> _participantIds = [];
+    private readonly List<Reservation> _reservations = [];
     private readonly Guid _roomId;
-    public Guid Id { get; }
     public DateOnly Date { get; }
     public TimeRange Time { get; }
 
     public Session(DateOnly date, TimeRange time, int maxParticipants, Guid trainerId, Guid? id = null)
+        : base(id ?? Guid.NewGuid())
     {
         Date = date;
         Time = time;
         _maxParticipants = maxParticipants;
         _trainerId = trainerId;
-        Id = id ?? Guid.NewGuid();
     }
 
     public ErrorOr<Success> ReserveSpot(Participant participant)
     {
-        if (_participantIds.Count >= _maxParticipants)
+        if (_reservations.Count >= _maxParticipants)
             return SessionErrors.CannotHaveMoreReservationsThanParticipants;
 
-        if (_participantIds.Contains(participant.Id))
+        if (_reservations.Any(reservation => reservation.ParticipantId == participant.Id))
             return Error.Conflict(description: "Participants cannot reserve twice to the same session");
 
-        _participantIds.Add(participant.Id);
+        _reservations.Add(new Reservation(participant.Id));
 
         return Result.Success;
     }
@@ -39,8 +41,11 @@ public class Session
         if (IsTooCloseToSession(dateTimeProvider.DateTimeUtcNow))
             return SessionErrors.CannotCancelReservationTooCloseToSession;
 
-        if (!_participantIds.Remove(participant.Id))
+        var reservation = _reservations.Find(reservation => reservation.ParticipantId == participant.Id);
+        if (reservation is null)
             return Error.NotFound("Participant not found");
+
+        _reservations.Remove(reservation);
 
         return Result.Success;
     }

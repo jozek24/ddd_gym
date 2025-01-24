@@ -1,4 +1,6 @@
-﻿using dddGym.Domain.UnitTests.TestConstants;
+﻿using dddGym.Domain.Common.ValueObjects;
+using dddGym.Domain.SessionRoot;
+using dddGym.Domain.UnitTests.TestConstants;
 
 namespace dddGym.Domain.UnitTests.TestUtilities.Sessions;
 

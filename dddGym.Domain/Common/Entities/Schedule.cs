@@ -1,15 +1,15 @@
-﻿using ErrorOr;
+﻿using dddGym.Domain.Common.ValueObjects;
+using ErrorOr;
 
-namespace dddGym.Domain;
+namespace dddGym.Domain.Common.Entities;
 
-public class Schedule
+public class Schedule : Entity
 {
-    private readonly Guid _id;
     private readonly Dictionary<DateOnly, List<TimeRange>> _callendar = new();
 
-    public Schedule(Guid? id = null, Dictionary<DateOnly, List<TimeRange>>? callendar = null)
+    public Schedule(Dictionary<DateOnly, List<TimeRange>>? callendar = null, Guid? id = null)
+        : base(id ?? Guid.NewGuid())
     {
-        _id = id ?? Guid.NewGuid();
         _callendar = callendar ?? new();
     }
 
@@ -36,6 +36,4 @@ public class Schedule
 
         return Result.Success;
     }
-
-    private Schedule() { }
 }

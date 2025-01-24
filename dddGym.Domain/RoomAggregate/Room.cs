@@ -1,21 +1,23 @@
-﻿using ErrorOr;
+﻿using dddGym.Domain.Common;
+using dddGym.Domain.Common.Entities;
+using dddGym.Domain.SessionRoot;
+using ErrorOr;
 
-namespace dddGym.Domain;
+namespace dddGym.Domain.RoomAggregate;
 
-public class Room
+public class Room : AggregateRoot
 {
-    public Guid Id { get; }
     private readonly List<Guid> _sessionIds = [];
     private readonly int _maxDailySessions;
     private readonly Guid _gymId;
     private readonly Schedule _schedule = Schedule.Empty();
 
     public Room(int maxDailySessions, Guid gymId, Schedule? schedule = null, Guid? id = null)
+        : base(id ?? Guid.NewGuid())
     {
         _maxDailySessions = maxDailySessions;
         _gymId = gymId;
         _schedule = schedule ?? Schedule.Empty();
-        Id = id ?? Guid.NewGuid();
     }
 
     public ErrorOr<Success> ScheduleSession(Session session)

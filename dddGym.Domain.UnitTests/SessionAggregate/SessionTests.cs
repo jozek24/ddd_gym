@@ -1,10 +1,11 @@
-﻿using dddGym.Domain.UnitTests.TestConstants;
+﻿using dddGym.Domain.SessionRoot;
+using dddGym.Domain.UnitTests.TestConstants;
 using dddGym.Domain.UnitTests.TestUtilities.Participants;
 using dddGym.Domain.UnitTests.TestUtilities.Services;
 using dddGym.Domain.UnitTests.TestUtilities.Sessions;
 using FluentAssertions;
 
-namespace dddGym.Domain.UnitTests;
+namespace dddGym.Domain.UnitTests.SessionAggregate;
 
 public class SessionTests
 {

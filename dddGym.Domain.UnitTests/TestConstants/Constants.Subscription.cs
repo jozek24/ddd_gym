@@ -1,4 +1,6 @@
-﻿namespace dddGym.Domain.UnitTests.TestConstants;
+﻿using dddGym.Domain.SubscriptionAggregate;
+
+namespace dddGym.Domain.UnitTests.TestConstants;
 
 public partial class Constants
 {

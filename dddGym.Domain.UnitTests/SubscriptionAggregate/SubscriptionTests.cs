@@ -1,8 +1,9 @@
-﻿using dddGym.Domain.UnitTests.TestUtilities.Gyms;
+﻿using dddGym.Domain.SubscriptionAggregate;
+using dddGym.Domain.UnitTests.TestUtilities.Gyms;
 using dddGym.Domain.UnitTests.TestUtilities.Subscriptions;
 using FluentAssertions;
 
-namespace dddGym.Domain.UnitTests;
+namespace dddGym.Domain.UnitTests.SubscriptionAggregate;
 
 public class SubscriptionTests
 {

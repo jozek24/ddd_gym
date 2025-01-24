@@ -1,8 +1,8 @@
 ﻿using Throw;
 
-namespace dddGym.Domain;
+namespace dddGym.Domain.Common.ValueObjects;
 
-public class TimeRange
+public class TimeRange : ValueObject
 {
     public TimeOnly Start { get; }
     public TimeOnly End { get; }
@@ -19,5 +19,11 @@ public class TimeRange
         if (other.Start >= End) return false;
 
         return true;
+    }
+
+    public override IEnumerable<object?> GetEqualityComponents()
+    {
+        yield return Start;
+        yield return End;
     }
 }

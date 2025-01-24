@@ -1,10 +1,12 @@
-﻿using ErrorOr;
+﻿using dddGym.Domain.Common;
+using dddGym.Domain.Common.Entities;
+using dddGym.Domain.SessionRoot;
+using ErrorOr;
 
-namespace dddGym.Domain;
+namespace dddGym.Domain.TrainerAggregate;
 
-public class Trainer
+public class Trainer : AggregateRoot
 {
-    private readonly Guid _id;
     private readonly Guid _userId;
     private readonly List<Guid> _sessionIds = new();
     private readonly Schedule _schedule = Schedule.Empty();
@@ -13,10 +15,10 @@ public class Trainer
         Guid userId,
         Schedule? schedule = null,
         Guid? id = null)
+            : base(id ?? Guid.NewGuid())
     {
         _userId = userId;
         _schedule = schedule ?? Schedule.Empty();
-        _id = id ?? Guid.NewGuid();
     }
 
     public ErrorOr<Success> AddSessionToSchedule(Session session)
